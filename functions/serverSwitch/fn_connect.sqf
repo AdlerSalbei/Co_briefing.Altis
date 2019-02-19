@@ -11,15 +11,15 @@ GRAD_Briefing_password = _password;
 onEachFrame {
     GRAD_Briefing_directConnectStartTime = diag_tickTime;
 
-    _displayMain = findDisplay IDD_MAIN;
-    _ctrlServerBrowser = _displayMain displayCtrl IDC_MAIN_MULTIPLAYER;
+    private _displayMain = findDisplay IDD_MAIN;
+    private _ctrlServerBrowser = _displayMain displayCtrl IDC_MAIN_MULTIPLAYER;
     ctrlActivate _ctrlServerBrowser;
 
     onEachFrame {
         ctrlActivate (findDisplay IDD_MULTIPLAYER displayCtrl IDC_MULTI_TAB_DIRECT_CONNECT);
 
         onEachFrame {
-            _ctrlServerAddress = findDisplay IDD_IP_ADDRESS displayCtrl 2300;
+            private _ctrlServerAddress = findDisplay IDD_IP_ADDRESS displayCtrl 2300;
             _ctrlServerAddress controlsGroupCtrl IDC_IP_ADDRESS ctrlSetText "arma.gruppe-adler.de";
 
             _ctrlServerAddress controlsGroupCtrl IDC_IP_PORT ctrlSetText str GRAD_Briefing_directConnectPort;
@@ -27,9 +27,9 @@ onEachFrame {
             ctrlActivate (_ctrlServerAddress controlsGroupCtrl IDC_OK);
 
             onEachFrame {
-                _ctrlServerList = findDisplay IDD_MULTIPLAYER displayCtrl IDC_MULTI_SESSIONS;
+                private _ctrlServerList = findDisplay IDD_MULTIPLAYER displayCtrl IDC_MULTI_SESSIONS;
 
-                _exit = for "_i" from 0 to ((lbSize _ctrlServerList) - 1) do {
+                private _exit = for "_i" from 0 to ((lbSize _ctrlServerList) - 1) do {
                     ([_ctrlServerList lbText _i,_ctrlServerList lbData _i]) call {
                         params [["_serverName",""],["_serverData",""]];
 
